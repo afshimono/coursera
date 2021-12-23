@@ -257,18 +257,59 @@ Copy and Paste the Resulting Table Below (2 columns – star rating and count):
 
 	Answer:
 
-	
+		This was obtained running two separate counts.
+
+		+------+
+		| love |
+		+------+
+		| 1780 |
+		+------+
+
+		+------+
+		| hate |
+		+------+
+		|  232 |
+		+------+
+
 	SQL code used to arrive at answer:
 
-	
+		SELECT COUNT(r.id) as love
+		FROM review as r
+		WHERE r.text LIKE '%love%' OR r.text LIKE '%love' OR r.text LIKE 'love%'
+
+		and 
+
+		SELECT COUNT(r.id) as hate
+		FROM review as r
+		WHERE r.text LIKE '%hate%' OR r.text LIKE '%hate' OR r.text LIKE 'hate%'
 	
 10. Find the top 10 users with the most fans:
 
 	SQL code used to arrive at answer:
+
+		SELECT u.name, u.fans
+		FROM user as u
+		GROUP BY u.id
+		ORDER BY u.fans DESC
+		LIMIT 10;	
 	
 	
 	Copy and Paste the Result Below:
 
+		+-----------+------+
+		| name      | fans |
+		+-----------+------+
+		| Amy       |  503 |
+		| Mimi      |  497 |
+		| Harald    |  311 |
+		| Gerald    |  253 |
+		| Christine |  173 |
+		| Lisa      |  159 |
+		| Cat       |  133 |
+		| William   |  126 |
+		| Fran      |  124 |
+		| Lissa     |  120 |
+		+-----------+------+
 	
 		
 
