@@ -96,27 +96,61 @@ Note: Primary Keys are denoted in the ER-Diagram with a yellow key icon.
 	
 	iv. Table: Checkin, Column: Count
 	
-		min:		max:		avg:
+		min:1		max:53		avg:1.9414
 		
 	
 	v. Table: User, Column: Review_count
 	
-		min:		max:		avg:
+		min:0		max:2000		avg:24.2995
 
 	Sample SQL:
 	SELECT MIN(Stars), MAX(Stars), AVG(Stars)
 	FROM Review;
-	SELECT MIN(Stars), MAX(Stars), AVG(Stars)
-	FROM Business;	
+		
 		
 
 
 5. List the cities with the most reviews in descending order:
 
 	SQL code used to arrive at answer:
+		SELECT b.city, COUNT(r.id) as review_count
+		FROM business as b 
+		INNER JOIN review as r
+		ON b.id = r.business_id
+		GROUP BY b.city
+		ORDER BY review_count DESC;	
 	
 	
 	Copy and Paste the Result Below:
+
+		+-----------------+--------------+
+		| city            | review_count |
+		+-----------------+--------------+
+		| Las Vegas       |          193 |
+		| Phoenix         |           65 |
+		| Toronto         |           51 |
+		| Scottsdale      |           37 |
+		| Henderson       |           30 |
+		| Tempe           |           28 |
+		| Pittsburgh      |           23 |
+		| Chandler        |           22 |
+		| Charlotte       |           21 |
+		| Montréal        |           18 |
+		| Madison         |           16 |
+		| Gilbert         |           13 |
+		| Mesa            |           13 |
+		| Cleveland       |           12 |
+		| North Las Vegas |            6 |
+		| Edinburgh       |            5 |
+		| Glendale        |            5 |
+		| Lakewood        |            5 |
+		| Cave Creek      |            4 |
+		| Champaign       |            4 |
+		| Markham         |            4 |
+		| North York      |            4 |
+		| Mississauga     |            3 |
+		| Surprise        |            3 |
+		| Avondale        |            2 |
 	
 
 	
@@ -126,32 +160,97 @@ i. Avon
 
 SQL code used to arrive at answer:
 
+	SELECT r.stars, COUNT(r.stars) as star_count
+	FROM business as b 
+	INNER JOIN review as r
+	ON b.id = r.business_id
+	WHERE b.city='Avon'
+	GROUP BY r.stars;
+
 
 Copy and Paste the Resulting Table Below (2 columns – star rating and count):
 
+	+-------+------------+
+	| stars | star_count |
+	+-------+------------+
+	+-------+------------+
 
 ii. Beachwood
 
 SQL code used to arrive at answer:
 
+	SELECT r.stars, COUNT(r.stars) as star_count
+	FROM business as b 
+	INNER JOIN review as r
+	ON b.id = r.business_id
+	WHERE b.city='Beachwood'
+	GROUP BY r.stars;
+
 
 Copy and Paste the Resulting Table Below (2 columns – star rating and count):
 		
+		+-------+------------+
+		| stars | star_count |
+		+-------+------------+
+		|     3 |          1 |
+		+-------+------------+
 
 
 7. Find the top 3 users based on their total number of reviews:
 		
 	SQL code used to arrive at answer:
+
+		SELECT u.name, COUNT(r.id) as review_number
+		FROM user as u
+		INNER JOIN review as r
+		ON u.id = r.user_id
+		GROUP BY u.id
+		ORDER BY review_number DESC
+		LIMIT 3;
 	
 		
 	Copy and Paste the Result Below:
 		
+		+-----------+---------------+
+		| name      | review_number |
+		+-----------+---------------+
+		| Kaitlan   |             2 |
+		| Christina |             2 |
+		| Craig     |             2 |
+		+-----------+---------------+
 
 
 8. Does posing more reviews correlate with more fans?
 
 	Please explain your findings and interpretation of the results:
+
+		Looking at the number of fans and the number of reviews, we do not see a direct correlation, since there are users with less reviews and more fans than others.
+		This is noticeable in the top 10 reviewers:
+
+		+-----------+---------------+------+
+		| name      | review_number | fans |
+		+-----------+---------------+------+
+		| Kaitlan   |             2 |    3 |
+		| Christina |             2 |   27 |
+		| Craig     |             2 |    1 |
+		| Dixie     |             1 |   41 |
+		| A'Starra  |             1 |    0 |
+		| Tonia     |             1 |    0 |
+		| Jeffrey   |             1 |    0 |
+		| soragamii |             1 |    1 |
+		| Cassandra |             1 |    0 |
+		| Amy       |             1 |    2 |
+		+-----------+---------------+------+
+
+	SQL code used to arrive at answer:
 	
+		SELECT u.name, COUNT(r.id) as review_number, u.fans
+		FROM user as u
+		INNER JOIN review as r
+		ON u.id = r.user_id
+		GROUP BY u.id
+		ORDER BY review_number DESC
+		LIMIT 10;	
 
 	
 9. Are there more reviews with the word "love" or with the word "hate" in them?
