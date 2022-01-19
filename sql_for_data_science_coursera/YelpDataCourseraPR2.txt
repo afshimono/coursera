@@ -317,6 +317,8 @@ Part 2: Inferences and Analysis
 
 1. Pick one city and category of your choice and group the businesses in that city or category by their overall star rating. Compare the businesses with 2-3 stars to the businesses with 4-5 stars and answer the following questions. Include your code.
 	
+	The selected categories were Toronto and Restaurants.
+	
 i. Do the two groups you chose to analyze have a different distribution of hours?
 
 
@@ -346,10 +348,13 @@ SQL code used for analysis:
 
 Ideas for analysis include: Parsing out keywords and business attributes for sentiment analysis, clustering businesses to find commonalities or anomalies between them, predicting the overall star rating for a business, predicting the number of fans a user will have, and so on. These are just a few examples to get you started, so feel free to be creative and come up with your own problem you want to solve. Provide answers, in-line, to all of the following:
 	
-i. Indicate the type of analysis you chose to do:
+i. Indicate the type of analysis you chose to do: Parsing out keywords and business attributes for sentiment analysis
          
          
 ii. Write 1-2 brief paragraphs on the type of data you will need for your analysis and why you chose that data:
+
+	In order to run a text analysis algorithm, we only use the text of the reviews and the id of the review in case we want to use the sentiment information to verify 
+	patterns.
                            
                   
 iii. Output of your finished dataset:
