@@ -325,7 +325,7 @@ ii. Do the two groups you chose to analyze have a different number of reviews?
          
 iii. Are you able to infer anything from the location data provided between these two groups? Explain.
 
-SQL code used for analysis:
+SQL code used for analysis: Restaurants in Toronto
 
 		
 		
